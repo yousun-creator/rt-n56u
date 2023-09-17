@@ -36,7 +36,7 @@
 #if defined(NEED_COMPAT_LZ4)
 #include "compat-lz4.h"
 #else
-/* include "lz4.h"*/
+#include "lz4.h"
 #endif
 
 #include "comp.h"
