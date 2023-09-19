@@ -2966,7 +2966,7 @@ openvpn_srv_cert_hook(int eid, webs_t wp, int argc, char **argv)
 #if defined(APP_OPENVPN)
 	int i, i_atls, i_tcv2;
 	char key_file[64];
-	static const char *openvpn_server_keys[5] = {
+	static const char *openvpn_server_keys[6] = {
 		"ca.crt",
 		"dh1024.pem",
 		"server.crt",
