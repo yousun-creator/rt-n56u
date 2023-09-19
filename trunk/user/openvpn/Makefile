@@ -1,4 +1,4 @@
-SRC_NAME=openvpn-2.4
+SRC_NAME=openvpn-2.5.2
 
 CFLAGS += -ffunction-sections -fdata-sections -fvisibility=hidden
 LDFLAGS += -Wl,--gc-sections
@@ -9,6 +9,7 @@ all: extract_test config_test
 extract_test:
 	( if [ ! -d $(SRC_NAME) ]; then \
 		tar -xf $(SRC_NAME).tar.xz; \
+		patch -d $(SRC_NAME) -p1 < $(SRC_NAME).patch ; \
 	fi )
 
 config_test:
@@ -36,23 +37,12 @@ configure:
 		--disable-unit-tests \
 		--disable-management \
 		--enable-small \
-		--enable-multi \
-		--enable-server \
 		--enable-multihome \
 		--enable-pf \
 		--enable-fragment \
-		--enable-http-proxy \
 		--enable-def-auth \
-		--enable-ssl \
-		--enable-crypto \
 		--enable-lzo \
 		--with-crypto-library=openssl \
-		OPENSSL_CRYPTO_CFLAGS="-I$(STAGEDIR)/include" \
-		OPENSSL_CRYPTO_LIBS="-L$(STAGEDIR)/lib -lcrypto" \
-		OPENSSL_SSL_CFLAGS="-I$(STAGEDIR)/include" \
-		OPENSSL_SSL_LIBS="-L$(STAGEDIR)/lib -lssl -lcrypto" \
-		LZO_CFLAGS="-I$(STAGEDIR)/include" \
-		LZO_LIBS="-L$(STAGEDIR)/lib -llzo2" \
 		--with-sysroot=$(STAGEDIR) \
 		--host=$(HOST_TARGET) \
 		--build=$(HOST_BUILD) ; \
