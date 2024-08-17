@@ -3,7 +3,8 @@ v2ray_dir="v2ray.com/core/main"
 export GO111MODULE=on
 #export GOPROXY=https://goproxy.io
 V2ray_VERSION := 4.32.1
-V2ray_URL := https://codeload.github.com/v2ray/v2ray-core/tar.gz/v$(V2ray_VERSION)
+#V2ray_URL := https://codeload.github.com/v2ray/v2ray-core/tar.gz/v$(V2ray_VERSION)
+V2ray_URL := https://github.com/v2fly/v2ray-core/archive/refs/tags/v$(V2ray_VERSION).tar.gz
 V2RAY_SED_ARGS:=
 V2RAY_SED_ARGS += \
 	s/_ "v2ray.com\/core\/main\/json"/\/\/ &/; \
